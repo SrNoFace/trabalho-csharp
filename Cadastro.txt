@@ -17,7 +17,7 @@
     <h4>Preencha os Campos abaixos conforme solicitado!</h4>
     <fieldset>
         <asp:Label ID="Label1" runat="server" Text="Nome"></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:TextBox ID="nome" runat="server"></asp:TextBox>
     </fieldset
     <fieldset>
         <asp:Label ID="Label2" runat="server" Text="Endereço"></asp:Label>
