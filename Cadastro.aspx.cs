@@ -20,7 +20,6 @@ namespace RamboErp
          if (url.Contains("?id="))
          {
              Int32 posicao = url.IndexOf("=");
-             Int32 tamanho = url.Length;
              string valor = url.Substring(posicao + 1);
 
              PessoaDao pessoaDao = new PessoaDao();
@@ -58,7 +57,7 @@ namespace RamboErp
   
             try
             {
-                
+                Response.Write(nomePessoa);
                 Pessoa pessoa = new Pessoa(codigoPessoa,nomePessoa, 'F', enderecoPessoa, cidadePessoa, cepPessoa, estadoPessoa, cnpj_cpfPessoa, dataPessoa);
                 PessoaDao pessoaDao = new PessoaDao();
                 if (!update) pessoaDao.inserir(pessoa);

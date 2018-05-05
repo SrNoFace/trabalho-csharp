@@ -13,6 +13,16 @@ namespace RamboErp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+             string url=  HttpContext.Current.Request.Url.AbsoluteUri;
+             if (url.Contains("?delete&id="))
+             {
+                 Int32 posicao = url.IndexOf("=");
+                 string valor = url.Substring(posicao + 1);
+                 PessoaDao pessoaDao = new PessoaDao();
+                 pessoaDao.excluir(valor);
+                 Response.Write("<script>O magrão foi excluido, rsrsrs</script>");
+
+             }
             geraTabela();
         }
 
@@ -21,9 +31,8 @@ namespace RamboErp
             HtmlTable tabela = new HtmlTable();
             HtmlTableRow linha;
             HtmlTableCell coluna;
-           // string[] campos = { "Código", "Nome", "Tipo", "Endereço", "Cidade", "Cep", "Uf", "Cnpj-Cpf", "Data Nascimento" };
             PessoaDao pessoaDao = new PessoaDao();
-            int numero = pessoaDao.buscarPessoas().Length;
+            int numero = pessoaDao.buscarPessoas().Count;
 
             for (int i = 0; i < numero; i++)
             {
@@ -58,6 +67,9 @@ namespace RamboErp
                     linha.Cells.Add(coluna);
                     coluna = new HtmlTableCell();
                     coluna.InnerHtml = "<a href='Cadastro.aspx?id="+Convert.ToString(pessoaDao.buscarPessoas()[i].getId())+"'>Alterar</a>";
+                    linha.Cells.Add(coluna);
+                    coluna = new HtmlTableCell();
+                    coluna.InnerHtml = "<a href='ListarPessoa.aspx?delete&id=" + Convert.ToString(pessoaDao.buscarPessoas()[i].getId()) + "'>Excluir</a>";
                     linha.Cells.Add(coluna);
                 tabela.Rows.Add(linha);
 
