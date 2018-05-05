@@ -12,18 +12,6 @@ namespace RamboErp
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Nova_Click(object sender, EventArgs e)
-        {
-            Response.Write("Ok");
-        }
-
-        protected void Editar_Click(object sender, EventArgs e)
-        {
-            Response.Write("Editar");
-        }
-
-      
+        }      
     }
 }

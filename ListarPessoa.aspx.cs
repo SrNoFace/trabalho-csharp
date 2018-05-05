@@ -21,8 +21,7 @@ namespace RamboErp
             HtmlTable tabela = new HtmlTable();
             HtmlTableRow linha;
             HtmlTableCell coluna;
-            
-            string[] campos = { "Código", "Nome", "Tipo", "Endereço", "Cidade", "Cep", "Uf", "Cnpj-Cpf", "Data Nascimento" };
+           // string[] campos = { "Código", "Nome", "Tipo", "Endereço", "Cidade", "Cep", "Uf", "Cnpj-Cpf", "Data Nascimento" };
             PessoaDao pessoaDao = new PessoaDao();
             int numero = pessoaDao.buscarPessoas().Length;
 
@@ -56,6 +55,9 @@ namespace RamboErp
                     linha.Cells.Add(coluna);
                     coluna = new HtmlTableCell();
                     coluna.InnerHtml = Convert.ToString(pessoaDao.buscarPessoas()[i].getDateOfBirth());
+                    linha.Cells.Add(coluna);
+                    coluna = new HtmlTableCell();
+                    coluna.InnerHtml = "<a href='Cadastro.aspx?id="+Convert.ToString(pessoaDao.buscarPessoas()[i].getId())+"'>Alterar</a>";
                     linha.Cells.Add(coluna);
                 tabela.Rows.Add(linha);
 
