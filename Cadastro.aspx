@@ -40,8 +40,37 @@
         <asp:TextBox ID="cep" runat="server"></asp:TextBox>
     </fieldset>
     <fieldset>
-        <asp:Label ID="Label5" runat="server" Text="Estado"></asp:Label>
-        <asp:TextBox ID="estado" runat="server"></asp:TextBox>
+      <asp:DropDownList ID="DDL2" runat="server" >
+      <asp:ListItem Value="RS" Text="Rio Grande do Sul"/>
+    <asp:ListItem Value="AC" Text="Acre" />
+    <asp:ListItem Value="AL" Text="Alagoas"/>
+    <asp:ListItem Value="AM" Text="Amazonas"/>
+    <asp:ListItem Value="AP" Text="Amapá"/>
+    <asp:ListItem Value="BA" Text="Bahia"/>
+    <asp:ListItem Value="CE" Text="Ceará"/>
+    <asp:ListItem Value="DF" Text="Distrito Federal"/>
+    <asp:ListItem Value="ES" Text="Espírito Santo"/>
+    <asp:ListItem Value="GO" Text="Goiás"/>
+    <asp:ListItem Value="MA" Text="Maranhão"/>
+    <asp:ListItem Value="MG" Text="Minas Gerais"/>
+    <asp:ListItem Value="MS" Text="Mato Grosso do Sul"/>
+    <asp:ListItem Value="MT" Text="Mato Grosso"/>
+    <asp:ListItem Value="PA" Text="Pará"/>
+    <asp:ListItem Value="PB" Text="Paraíba"/>
+    <asp:ListItem Value="PE" Text="Pernambuco"/>
+    <asp:ListItem Value="PI" Text="Piauí"/>
+    <asp:ListItem Value="PR" Text="Paraná"/>
+    <asp:ListItem Value="RJ" Text="Rio de Janeiro"/>
+    <asp:ListItem Value="RN" Text="Rio Grande do Norte"/>
+    <asp:ListItem Value="RO" Text="Rondônia"/>
+    <asp:ListItem Value="RR" Text="Rorraima"/>
+    <asp:ListItem Value="RS" Text="Rio Grande do Sul"/>
+    <asp:ListItem Value="SC" Text="Santa Catarina"/>
+    <asp:ListItem Value="SE" Text="Sergipe"/>
+    <asp:ListItem Value="SP" Text="São Paulo"/>
+    <asp:ListItem Value="TO" Text="Tocantins"/>
+   
+</asp:DropDownList>
     </fieldset>
        <fieldset>
         <asp:Label ID="Label6" runat="server" Text="Data Nascimento"></asp:Label>
@@ -79,7 +108,7 @@ body {
   font-size: 12px;
   line-height: 30px;
   color: #777;
-  background:  #76b852;
+  background:  #696969;
 }
 
 .container {
@@ -216,5 +245,6 @@ fieldset {
   color: #888;
 }
       </style>
+     
 </body>
 </html>

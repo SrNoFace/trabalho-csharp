@@ -16,29 +16,37 @@ namespace RamboErp
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+
          if (url.Contains("?id=") && Session["acao"] != "atualizar")
          {
+
              Int32 posicao = url.IndexOf("=");
              string valor = url.Substring(posicao + 1);
 
              PessoaDao pessoaDao = new PessoaDao();
              Pessoa pessoa = pessoaDao.buscaPessoaPorId(valor);
+             
              codigo.Value = pessoa.getId().ToString();
              nome.Text = pessoa.getName();
              dataNascimento.Text = pessoa.getDateOfBirth();
              endereco.Text = pessoa.getAddress();
              cidade.Text = pessoa.getCity();
-             estado.Text = pessoa.getState();
              cep.Text = pessoa.getCep();
              cpf_cnpj.Text = pessoa.getCnpj_cpf();
+
              char tipo = pessoa.getTypePerson();
+             string sigla = pessoa.getState(); 
 
              if (tipo == 'J')
              {
                  ddLType.Items.FindByText("Juridica").Selected = true;
              }
 
-             Session["acao"] = "atualizar";
+             
+                 DDL2.Items.FindByValue(sigla).Selected = true;
+              
+                 Session["acao"] = "atualizar";
 
          }
          
@@ -53,9 +61,11 @@ namespace RamboErp
             String dataPessoa = dataNascimento.Text;
             String enderecoPessoa = endereco.Text;
             String cidadePessoa = cidade.Text;
-            String estadoPessoa = estado.Text;
+            String estadoPessoa = DDL2.SelectedValue.ToString();
             String cepPessoa = cep.Text;
             String cnpj_cpfPessoa = cpf_cnpj.Text;
+
+
 
             char tipoPessoa;
 
@@ -83,25 +93,21 @@ namespace RamboErp
                 
                 if (Session["acao"] != "atualizar")
                 {
-
                     Session["acao"] = "atualizar";
                     pessoaDao.inserir(pessoa);
                     Response.Write("<script>alert('O cadastro foi realizo com sucesso...');</script>");
-              
                 }
                 else
                 {
-                    Session["acao"] = "inserir";
-                    
+                    Session["acao"] = "inserir";       
                     int codigoPessoa = Convert.ToInt32(codigo.Value);
                     pessoa.setId(codigoPessoa);
                     pessoaDao.alterar(pessoa);
                     Response.Write("<script>alert('A alteração foi realizada com sucesso...');</script>");
-                
                 }
-
-                   Response.Write("<script>window.location.href='ListarPessoa.aspx'</script>");
                    Session.Abandon();
+                   Response.Write("<script>window.location.href='ListarPessoa.aspx'</script>");
+                   
             
             }catch(Exception ex)
             {

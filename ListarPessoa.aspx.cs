@@ -13,6 +13,8 @@ namespace RamboErp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["acao"] = "inserir";
+
              string url=  HttpContext.Current.Request.Url.AbsoluteUri;
              if (url.Contains("?delete&id="))
              {
@@ -20,7 +22,7 @@ namespace RamboErp
                  string valor = url.Substring(posicao + 1);
                  PessoaDao pessoaDao = new PessoaDao();
                  pessoaDao.excluir(valor);
-                 Response.Write("<script>O magrão foi excluido, rsrsrs</script>");
+                 Response.Write("<script>alert('Exclusão realizada com sucesso!');</script>");
 
              }
             geraTabela();
