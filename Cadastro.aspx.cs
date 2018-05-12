@@ -11,20 +11,18 @@ namespace RamboErp
 {
     public partial class Cadastro : System.Web.UI.Page
     {
-
-        private Boolean update = false;
+        string url =  HttpContext.Current.Request.Url.AbsoluteUri;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-       
-         string url=  HttpContext.Current.Request.Url.AbsoluteUri;
-         if (url.Contains("?id="))
+
+         if (url.Contains("?id=") && Session["acao"] != "atualizar")
          {
              Int32 posicao = url.IndexOf("=");
              string valor = url.Substring(posicao + 1);
 
              PessoaDao pessoaDao = new PessoaDao();
              Pessoa pessoa = pessoaDao.buscaPessoaPorId(valor);
-
              codigo.Value = pessoa.getId().ToString();
              nome.Text = pessoa.getName();
              dataNascimento.Text = pessoa.getDateOfBirth();
@@ -33,20 +31,16 @@ namespace RamboErp
              estado.Text = pessoa.getState();
              cep.Text = pessoa.getCep();
              cpf_cnpj.Text = pessoa.getCnpj_cpf();
-             update = true;
+             Session["acao"] = "atualizar";
 
          }
-         else
-         {
-             codigo.Value = "0";
-         }
+         
          
         }
 
         protected void enviar_Click(object sender, EventArgs e)
         {
             
-            int codigoPessoa = Convert.ToInt32(codigo.Value);
             String nomePessoa = nome.Text;
             String dataPessoa = dataNascimento.Text;
             String enderecoPessoa = endereco.Text;
@@ -54,15 +48,41 @@ namespace RamboErp
             String estadoPessoa = estado.Text;
             String cepPessoa = cep.Text;
             String cnpj_cpfPessoa = cpf_cnpj.Text;
-  
+
+
+
+
             try
             {
-                Response.Write(nomePessoa);
-                Pessoa pessoa = new Pessoa(codigoPessoa,nomePessoa, 'F', enderecoPessoa, cidadePessoa, cepPessoa, estadoPessoa, cnpj_cpfPessoa, dataPessoa);
+                Pessoa pessoa = new Pessoa(nomePessoa, 'F', enderecoPessoa, cidadePessoa, cepPessoa, estadoPessoa, cnpj_cpfPessoa, dataPessoa);
                 PessoaDao pessoaDao = new PessoaDao();
-                if (!update) pessoaDao.inserir(pessoa);
-                else pessoaDao.alterar(pessoa);
-                Response.Write("<script>alert('Blz');</script>");
+
+                String data = pessoa.getDateOfBirth().Substring(0, 10).Replace("/", "-");
+                string ano = data.Substring(6, 4);
+                string mes = data.Substring(3, 2);
+                string dia = data.Substring(0, 2);
+              
+                pessoa.setDateOfBirth(ano + "-" + mes + "-" + dia);
+
+                
+                if (Session["acao"] != "atualizar")
+                {
+
+                    Session["acao"] = "atualizar";
+                    pessoaDao.inserir(pessoa);
+              
+                }
+                else
+                {
+                    Session["acao"] = "inserir";
+                    
+                    int codigoPessoa = Convert.ToInt32(codigo.Value);
+                    pessoa.setId(codigoPessoa);
+                    pessoaDao.alterar(pessoa);
+                
+                }
+
+                   Response.Write("<script>window.location.href='ListarPessoa.aspx'</script>");
             }catch(Exception ex)
             {
                 Response.Write(ex);
