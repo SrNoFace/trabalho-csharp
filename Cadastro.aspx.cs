@@ -86,6 +86,7 @@ namespace RamboErp
 
                     Session["acao"] = "atualizar";
                     pessoaDao.inserir(pessoa);
+                    Response.Write("<script>alert('O cadastro foi realizo com sucesso...');</script>");
               
                 }
                 else
@@ -95,6 +96,7 @@ namespace RamboErp
                     int codigoPessoa = Convert.ToInt32(codigo.Value);
                     pessoa.setId(codigoPessoa);
                     pessoaDao.alterar(pessoa);
+                    Response.Write("<script>alert('A alteração foi realizada com sucesso...');</script>");
                 
                 }
 

@@ -22,7 +22,7 @@
         <asp:Label ID="Label1" runat="server" Text="Nome"></asp:Label>
         <asp:TextBox ID="nome" runat="server"></asp:TextBox>
     </fieldset>
-     
+     Tipo: 
 <asp:DropDownList ID="ddLType" runat="server" >
 <asp:ListItem Value="fisica">Fisica</asp:ListItem>
 <asp:ListItem Value="juridica">Juridica</asp:ListItem>
@@ -57,6 +57,7 @@
     </fieldset>
   </form>
 </div>
+<a href="Index.aspx">Voltar</a>
       <style>
           @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 * {

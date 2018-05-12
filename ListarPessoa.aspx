@@ -9,6 +9,7 @@
 <div class="table-title">
 <h3>Tabela de Pessoas</h3>
 </div>
+<a href="Index.aspx">Voltar</a>
 
   
 

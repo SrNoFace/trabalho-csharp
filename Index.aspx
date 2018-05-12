@@ -26,6 +26,11 @@
   padding: 8% 0 0;
   margin: auto;
 }
+
+a 
+{
+    text-decoration: none;
+} 
 .form {
   position: relative;
   z-index: 1;
