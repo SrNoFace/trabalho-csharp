@@ -10,9 +10,10 @@
      <div class="login-page">
   <div class="form">
    <form class="login-form">
-     <img src="icon.jpg" />
       <a href="Cadastro.aspx">Cadastrar</a>
-      </br> 
+      <br /> 
+        <br /> 
+          <br /> 
        <a href="ListarPessoa.aspx">Lista de Pessoas</a>
    </form>
   </div>
@@ -48,6 +49,22 @@
 }
 .form button {
   font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+   text-align: center;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+a
+{
+      font-family: "Roboto", sans-serif;
   text-transform: uppercase;
    text-align: center;
   outline: 0;
