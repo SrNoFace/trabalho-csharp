@@ -31,6 +31,13 @@ namespace RamboErp
              estado.Text = pessoa.getState();
              cep.Text = pessoa.getCep();
              cpf_cnpj.Text = pessoa.getCnpj_cpf();
+             char tipo = pessoa.getTypePerson();
+
+             if (tipo == 'J')
+             {
+                 ddLType.Items.FindByText("Juridica").Selected = true;
+             }
+
              Session["acao"] = "atualizar";
 
          }
@@ -40,7 +47,8 @@ namespace RamboErp
 
         protected void enviar_Click(object sender, EventArgs e)
         {
-            
+
+
             String nomePessoa = nome.Text;
             String dataPessoa = dataNascimento.Text;
             String enderecoPessoa = endereco.Text;
@@ -49,15 +57,23 @@ namespace RamboErp
             String cepPessoa = cep.Text;
             String cnpj_cpfPessoa = cpf_cnpj.Text;
 
+            char tipoPessoa;
 
+            if (ddLType.SelectedValue == "fisica")
+            {
+                tipoPessoa = 'F';
+            }else 
+            {
+             tipoPessoa = 'J';
+            }
 
 
             try
             {
-                Pessoa pessoa = new Pessoa(nomePessoa, 'F', enderecoPessoa, cidadePessoa, cepPessoa, estadoPessoa, cnpj_cpfPessoa, dataPessoa);
+                Pessoa pessoa = new Pessoa(nomePessoa, tipoPessoa, enderecoPessoa, cidadePessoa, cepPessoa, estadoPessoa, cnpj_cpfPessoa, dataPessoa);
                 PessoaDao pessoaDao = new PessoaDao();
 
-                String data = pessoa.getDateOfBirth().Substring(0, 10).Replace("/", "-");
+                String data = pessoa.getDateOfBirth().Substring(0, 10);
                 string ano = data.Substring(6, 4);
                 string mes = data.Substring(3, 2);
                 string dia = data.Substring(0, 2);
@@ -83,6 +99,8 @@ namespace RamboErp
                 }
 
                    Response.Write("<script>window.location.href='ListarPessoa.aspx'</script>");
+                   Session.Abandon();
+            
             }catch(Exception ex)
             {
                 Response.Write(ex);

@@ -22,14 +22,11 @@
         <asp:Label ID="Label1" runat="server" Text="Nome"></asp:Label>
         <asp:TextBox ID="nome" runat="server"></asp:TextBox>
     </fieldset>
-       <fieldset>
-        <asp:Label ID="Label8" runat="server" Text="Pessoa Física?"></asp:Label>
-           <asp:RadioButton ID="RadioButton1" runat="server" Text="Sim"/>
-    </fieldset>
-            <fieldset>
-        <asp:Label ID="Label9" runat="server" Text="Pessoa Juridica?"></asp:Label>
-           <asp:RadioButton ID="RadioButton2" runat="server" Text="Sim" />
-    </fieldset>
+     
+<asp:DropDownList ID="ddLType" runat="server" >
+<asp:ListItem Value="fisica">Fisica</asp:ListItem>
+<asp:ListItem Value="juridica">Juridica</asp:ListItem>
+</asp:DropDownList>
     <fieldset>
         <asp:Label ID="Label2" runat="server" Text="Endereço"></asp:Label>
         <asp:TextBox ID="endereco" runat="server"></asp:TextBox>
