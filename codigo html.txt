@@ -1,0 +1,8 @@
+     <fieldset>
+        <asp:Label ID="Label8" runat="server" Text="Pessoa Física?"></asp:Label>
+           <asp:RadioButton ID="RadioButton1" runat="server" Text="Sim"/>
+    </fieldset>
+            <fieldset>
+        <asp:Label ID="Label9" runat="server" Text="Pessoa Juridica?"></asp:Label>
+           <asp:RadioButton ID="RadioButton2" runat="server" Text="Sim" />
+    </fieldset>
