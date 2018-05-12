@@ -1,0 +1,23 @@
+função c#
+ protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddLType.SelectedValue == "juridica")
+            {
+                rdoMeapSupport.Enabled = true;
+                rdoMeapSupport.SelectedValue = "Yes";
+            }
+
+            if (ddLType.SelectedValue == "fisica")
+            {
+                rdoMeapSupport.SelectedValue = null;
+                rdoMeapSupport.Enabled = true;
+            }
+no html no formulario
+      <fieldset>
+<asp:Label ID="Label8" runat="server" Text="Selecione se você é Pessoa Física ou Juridica"></asp:Label>
+       </fieldset>
+       </fieldset>
+<asp:DropDownList ID="ddLType" runat="server" >
+<asp:ListItem Value="fisica">Fisica</asp:ListItem>
+<asp:ListItem>Juridica</asp:ListItem>
+</asp:DropDownList>
